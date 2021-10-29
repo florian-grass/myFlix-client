@@ -22922,7 +22922,7 @@ class MainView extends _reactDefault.default.Component {
                     _id: 3,
                     Title: 'Gladiator',
                     Description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.',
-                    ImagePath: './img/Gladiator.png',
+                    ImagePath: '../img/Gladiator.png',
                     Genre: 'Action, Adventure, Drama',
                     Director: 'Ridley Scott'
                 }
