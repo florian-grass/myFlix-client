@@ -14,6 +14,18 @@ export class MainView extends React.Component {
     };
   }
 
+  componentDidMount(){
+    axios.get('https://stark-chamber-97082.herokuapp.com/movies')
+    .then(response => {
+      this.state({
+        movies: response.data
+      });
+    })
+    .catch(error => {
+      console.log(error)
+    });
+  }
+
   // When a movie is clicked, this function is invoken and updates the state of the 'selectedMovie' property to that movie
   setSelectedMovie(newSelectedMovie) {
     this.setState({
@@ -24,7 +36,7 @@ export class MainView extends React.Component {
   render() {
     const { movies, selectedMovie } = this.state;
 
-    if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
+    if (movies.length === 0) return <div className="main-view" />;
 
     return (
       <div className="main-view">
@@ -33,7 +45,7 @@ export class MainView extends React.Component {
           ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
 
           : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }} />
+            <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
           ))
         }
       </div>
