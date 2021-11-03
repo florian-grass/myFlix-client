@@ -7,8 +7,11 @@ export function RegistrationView(props) {
   const [ birthday, setBirthday ] = useState('');
 
   const handleSubmit = (e) => {
-    e-preventDefault();
+    e.preventDefault();
     console.log(username, password, email, birthday);
+    /* Send a request to the server for registration */
+    /* then call props.onSignedUp(register) */
+    props.onSignedUp(username);
   };
 
   return (
@@ -32,3 +35,13 @@ export function RegistrationView(props) {
     </form>
   );
 }
+
+RegistrationView.propTypes = {
+  user: PropTypes.shape({
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+    Birthday: PropTypes.string.isRequired
+  }).isRequired,
+  onClick: PropTypes.func.isRequired
+};
