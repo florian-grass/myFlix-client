@@ -44,9 +44,16 @@ export class MainView extends React.Component {
     });
   }
 
+  /* When a user successfully signs up, this function updates the user property */
+  onSignedUp(user){
+    this.setState({
+      user
+    });
+  }
+
 
   render() {
-    const { movies, selectedMovie } = this.state;
+    const { user, movies, selectedMovie } = this.state;
 
     /* If there is no user, the LoginView is rendered. If ther is a user logged in, the user details are passed as a prop to the loginView */
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
