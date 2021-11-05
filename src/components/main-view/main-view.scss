@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(../img/background-image.jpg);
+}
+
+input {
+  border: 1px solid yellow;
+  border-radius: 10px;
+  display: block;
+  font-size: 1.5em;
+}
+
+h1 {
+  color: white;
+}
+
+p {
+  font-size: 1.5em;
+  color: white;
+}
