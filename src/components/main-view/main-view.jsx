@@ -5,8 +5,8 @@ import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col, Navbar } from 'react-bootstrap';
+import  './main-view.scss';
 
 export class MainView extends React.Component {
 
@@ -67,9 +67,28 @@ export class MainView extends React.Component {
     if (movies.length === 0) return <div className="main-view" />;
 
     return (
-      <Row className="justify-content-md-center main-view">
+      <Container>
+          <Navbar bg="dark" variant="dark" fixed="top">
+            <Container>
+              <Navbar.Brand href="#home">
+                <img
+                  src="/logo.svg"
+                  width="30"
+                  height="30"
+                  className="d-inline-block align-top"
+                  alt="MyFlix Logo"
+                />
+              </Navbar.Brand>
+                <Nav className="me-auto">
+                  <Nav.Link href="#home">Home</Nav.Link>
+                  <Nav.Link href="#login">Login</Nav.Link>
+                  <Nav.Link href="#movies">Movies</Nav.Link>
+              </Nav>
+            </Container>
+          </Navbar>
+        <Row className="justify-content-md-center main-view">
 
-        {/* If the state of 'selectedMovie' is nt null, that selected movie will be returned, otherwise all movies will be returned */}
+        {/* If the state of 'selectedMovie' is not null, that selected movie will be returned, otherwise all movies will be returned */}
         {selectedMovie
           ? (            
             <Col md={8}>
@@ -83,7 +102,9 @@ export class MainView extends React.Component {
             </Col>
           ))          
         }
-      </Row>
+        </Row>
+      </Container>
+  
     );
   }
 }
