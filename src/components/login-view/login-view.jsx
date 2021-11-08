@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Container, Row, Col, CardGroup, Card, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, CardGroup, Card, Form, Button, Navbar, Nav } from 'react-bootstrap';
 
-import './registration-view.scss';
+import './login-view.scss';
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
@@ -24,31 +24,34 @@ export function LoginView(props) {
       })
       .catch(e => {
         console.log('error registering the user');
-        alert('sSomething wasn\'t entered right');
+        alert('Something wasn\'t entered right');
       })
   };
 
   return (
     <Container>
-      <Navbar bg="dark" variant="dark" fixed="top">
+      {/* <Navbar bg="dark" variant="dark" fixed="top">
         <Container>
           <Navbar.Brand href="#home">
             <img
-              src="/logo.svg"
-              width="30"
-              height="30"
+              src="../img/myFlix-logo.jpg"
+              width="250"
+              height="80"
               className="d-inline-block align-top"
               alt="MyFlix Logo"
             />
           </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#login">Login</Nav.Link>
               <Nav.Link href="#movies">Movies</Nav.Link>
-          </Nav>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Container>
+      <Container> */}
         <Row className="justify-content-md-center">
           <Col sm={12} md={10} lg={8} xl={6}>
             <CardGroup>
@@ -78,22 +81,26 @@ export function LoginView(props) {
                       />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit"onClick={handleSubmit}>Submit</Button>
+                    <Button /*className="primary-button"*/ variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
                   </Form>
                 </Card.Body>
               </Card>
             </CardGroup>
           </Col>
         </Row>
-      </Container>
+      {/* </Container> */}
     </Container>
 
   );
 }
 
+// LoginView.propTypes = {
+//   user: PropTypes.shape({
+//     Username: PropTypes.string.isRequired,
+//     Password: PropTypes.string.isRequired,
+//   }).isRequired
+// };
+
 LoginView.propTypes = {
-  user: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-  }).isRequired
+  onLoggedIn: PropTypes.func.isRequired
 };
