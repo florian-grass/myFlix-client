@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Container, Row, Col, CardGroup, Card, Form, Button } from 'react-bootstrap';
 
-import './registration-view.scss';
-
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
@@ -12,23 +10,21 @@ export function LoginView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('https://stark-chamber-97082.herokuapp.com/', {
+      /* Send a request to the server for authentication*/
       Username: username,
       Password: password,
     })
       .then(response => {
         const data = response.data;
-        console.log(data);
-        window.open("/" , "_self");
-        // The second argument "_self" is necessary, so that
-        // the page will open in the current page
+        props.onLoggedIn(data);
       })
       .catch(e => {
-        console.log('error registering the user');
-        alert('sSomething wasn\'t entered right');
+        console.log('no such user');
       })
   };
 
   return (
+    /* Include CSS Bootstrap for React */
     <Container>
       <Row>
         <Col>
