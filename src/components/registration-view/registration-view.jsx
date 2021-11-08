@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { CardGroup } from 'react-bootstrap';
 import { Form, Button, Container, Row, Col, Card, CardGroup } from 'react-bootstrap';
 
-import './registration-view.scss';
+// import './registration-view.scss';
 import axios from 'axios';
 
 export function RegistrationView(props) {
