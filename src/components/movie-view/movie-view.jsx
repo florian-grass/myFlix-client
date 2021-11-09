@@ -30,21 +30,38 @@ export class MovieView extends React.Component {
         </Card.Header>
         <Card.Body>
           <Card.Text>
-            Description: {movie.Description};
-
+            {movie.Description}
           </Card.Text>
-          <Button onClick={() => { onBackClick() }} variant="link">Back</Button>
         </Card.Body>
+        <CardFooter>
+          <Link to={`/directors/${movie.Director.Name}`}>
+            <Button variant="link">Director</Button>
+          </Link>
+
+          <Link to ={`/genres/${movie.Genre.Name}`}>
+            <Button variant="link">Genre</Button>
+          </Link>
+          <Button onClick={() => { onBackClick() }} variant="link">Back</Button>
+        </CardFooter>
       </Card>
     );
   }
 }
 
-MovieView.propTypes = {
+MovieView.PropTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired
-    
-  }).isRequired,
+    ImagePath: PropTypes.string.isRequired,
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
+      Birthday: PropTypes.instanceOf(Date).isRequired,
+      Deathday: PropTypes.instanceOf(Date)
+    }),
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired
+    })    
+  }).isRequired
 };
