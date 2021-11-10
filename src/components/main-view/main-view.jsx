@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Import components
 import { LoginView } from '../login-view/login-view';
@@ -48,8 +49,69 @@ export class MainView extends React.Component {
     })
     .catch(function (error) {
       console.log(error);
+    });        
+  }
+
+  getUsers(token) {
+    axios.get('https://stark-chamber-97082.herokuapp.com/users', {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      // Assign the result to the sate
+      this.setState({
+        users: response.data
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
     });
   }
+
+  getUser(token) {
+    axios.get('https://stark-chamber-97082.herokuapp.com/users/${Username}', {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      // Assign the result to the sate
+      this.setState({
+        user: response.data[0].user
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+  
+  getDirector(token) {
+    axios.get('https://stark-chamber-97082.herokuapp.com/directors/${Director.Name}', {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      // Assign the result to the sate
+      this.setState({
+        Director: response.data[0].Director
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  getGenre(token) {
+    axios.get('https://stark-chamber-97082.herokuapp.com/genres/${Genre.Name}', {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      // Assign the result to the sate
+      this.setState({
+        Genre: response.data[0].Genre
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
 
   /* When a user successfully logs in, this function updates the 'user' property in state to that particular user */
   onLoggedIn(authData) {
