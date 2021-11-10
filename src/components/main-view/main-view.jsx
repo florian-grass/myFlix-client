@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 // Import components
 import { LoginView } from '../login-view/login-view';
@@ -23,7 +23,11 @@ export class MainView extends React.Component {
     // Initial state set to null
     this.state = {
       movies: [],
-      user: null
+      user: null,
+      Username: '',
+      Password: '',
+      Email: '',
+      Birthday: ''
     };
   }
 
@@ -60,51 +64,6 @@ export class MainView extends React.Component {
       // Assign the result to the sate
       this.setState({
         users: response.data
-      });
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-
-  getUser(token) {
-    axios.get('https://stark-chamber-97082.herokuapp.com/users/${Username}', {
-      headers: { Authorization: `Bearer ${token}`}
-    })
-    .then(response => {
-      // Assign the result to the sate
-      this.setState({
-        user: response.data[0].user
-      });
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-  
-  getDirector(token) {
-    axios.get('https://stark-chamber-97082.herokuapp.com/directors/${Director.Name}', {
-      headers: { Authorization: `Bearer ${token}`}
-    })
-    .then(response => {
-      // Assign the result to the sate
-      this.setState({
-        Director: response.data[0].Director
-      });
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-
-  getGenre(token) {
-    axios.get('https://stark-chamber-97082.herokuapp.com/genres/${Genre.Name}', {
-      headers: { Authorization: `Bearer ${token}`}
-    })
-    .then(response => {
-      // Assign the result to the sate
-      this.setState({
-        Genre: response.data[0].Genre
       });
     })
     .catch(function (error) {
@@ -224,25 +183,14 @@ export class MainView extends React.Component {
                 </Col>
             }} />
 
-            <Route path="/users/:username" render={({ match, history }) => {
+            <Route path="/profile" render={({ history }) => {
               if (!user) return <Col> 
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                 </Col>
               // before the users have been loaded
               if (users.length === 0) return <div className="main-view" />;
                 return <Col md={8}>
-                <ProfileView user={users.find(u => u.Username === match.params.Username)} onBackclick={() => history.goBack()} />
-              </Col>
-            }} />
-
-            <Route path="/users/:Username/update" render={({ history }) => {
-              if (!user) return <Col> 
-                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-                </Col>
-              // before the users have been loaded
-              if (users.length === 0) return <div className="main-view" />;
-                return <Col>
-                <UpdateView onBackclick={() => history.goBack()} />
+                <ProfileView history={history} movies={movies} />
               </Col>
             }} />
 
@@ -254,3 +202,4 @@ export class MainView extends React.Component {
   }
 }
 
+export default MainView;
