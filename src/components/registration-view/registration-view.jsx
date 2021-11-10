@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { CardGroup } from 'react-bootstrap';
 import { Form, Button, Container, Row, Col, Card, CardGroup } from 'react-bootstrap';
+import axios from 'axios';
 
 // import './registration-view.scss';
 import axios from 'axios';
