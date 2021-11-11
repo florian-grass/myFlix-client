@@ -1,8 +1,9 @@
-import react from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 
-export class DirectorView extends react.Component {
+export class DirectorView extends React.Component {
+  
   render () {
     const { Director, onBackClick } = this.props;
 
