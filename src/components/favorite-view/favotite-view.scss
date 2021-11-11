@@ -5,8 +5,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    img {
+    margin: auto;
+    width: 100% img {
+      display: block;
       height: 400px;
+      margin: auto;
+    }
+    figcaption {
+      text-align: center;
     }
   }
+  button.btn {
+    display: block;
+    margin: auto;
+  }
+}
+
+.card {
+  margin-bottom: 1rem;
 }
