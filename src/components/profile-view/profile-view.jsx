@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, CardGroup, Card } from 'react-bootstrap';
+import { Container, Row, Col, CardGroup, Card, Button } from 'react-bootstrap';
 
 export class ProfileView extends React.Component {
+
   render() {
     const { user, onBackClick} = this.props;
 
     return(
       <Container>
-        <Row>
-          <Col>
-            <Card.Group>
+        <Row classname="justify-content-center">
+          <Col sm={12} md={10} lg={8} xl={6}>
+            <CardGroup>
               <Card>
 
                 <Card.Header>
@@ -37,11 +38,12 @@ export class ProfileView extends React.Component {
                 <Link to ={`/users/${user.Username}/deregister`}>
                   <Button variant="link">Delete {user.Username}'s Profile</Button>
                 </Link>
+                
                 <Button onClick={() => { onBackClick() }} variant="link">Back</Button>
                 </Card.Footer>
 
               </Card>
-            </Card.Group>
+            </CardGroup>
           </Col>
         </Row>
       </Container>
