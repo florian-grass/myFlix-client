@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Row, Col, Figure, Button } from 'react-bootstrap';
+import {Row, Col, Figure, Button, Card } from 'react-bootstrap';
 import axios from 'axios';
 import './favorite-view.scss';
 
@@ -15,7 +15,8 @@ function FavoriteMovies({ favoriteMovieList }) {
   }
 
   return (
-    <>
+    <Card>
+      <Card.Body>
       <Row>
         <Col xs={12}>
           <h4>{user.Username}'s Favorite Movies</h4>
@@ -41,7 +42,8 @@ function FavoriteMovies({ favoriteMovieList }) {
           )
         })}
       </Row>
-    </>
+      </Card.Body>      
+    </Card>
   )
 }
 
