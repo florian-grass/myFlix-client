@@ -9,6 +9,24 @@ export class MovieCard extends React.Component {
 
   render() {
     const { movie } = this.props;
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const accessToken = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
+      const _id = movie._id;
+      axios.post(`https://stark-chamber-97082.herokuapp.com/users/${user}/movies/${_id}` , {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      .then(response => {
+        const data = response.data;
+        console.log(data);
+      })
+      .catch(e => {
+        console,log('error adding to favorites')
+      });
+    };
 
     return (
       <Card>
@@ -31,7 +49,7 @@ export class MovieCard extends React.Component {
 
 
 
-MovieCard.propTypes = {
+MovieCard.PropTypes = {
   movie: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
