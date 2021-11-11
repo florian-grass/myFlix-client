@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Container, Row, Col, Card, CardGroup } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Card, CardGroup, Navbar, Nav } from 'react-bootstrap';
 import axios from 'axios';
+import logo from '../img/myFlix-logo.jpg';
 
-// import './registration-view.scss';
-import axios from 'axios';
+import './registration-view.scss';
 
 export function RegistrationView(props) {
   const [ username, setUsername ] = useState('');
@@ -35,8 +35,27 @@ export function RegistrationView(props) {
 
   return (    
     <Container>
-      <Row>
-        <Col>
+      <Navbar variant="dark" fixed="top" expand="lg">
+        <Container>
+          <Navbar.Brand href="#home">
+            <img
+              src={logo}
+              width="250"
+              height="80"
+              className="d-inline-block align-top"
+              alt="MyFlix Logo"
+            />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/">Login</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Row className="justify-content-center">
+        <Col sm={12} md={10} lg={8} xl={6}>
           <CardGroup>
             <Card>
               <Card.Body>
@@ -70,7 +89,8 @@ export function RegistrationView(props) {
                     <Form.Control 
                       type="email" 
                       value={email}
-                      onChange={e => setEmail(e.target.value)} placeholder="enter eMail"
+                      onChange={e => setEmail(e.target.value)} 
+                      placeholder="enter eMail"
                       required 
                     />
                   </Form.Group>
@@ -78,14 +98,14 @@ export function RegistrationView(props) {
                   <Form.Group>
                     <Form.Label>Birthday</Form.Label>
                     <Form.Control 
-                      type="birthday" 
+                      type="date" 
                       value={birthday}
-                      onChange={e => setBirthday(e.target.value)} placeholder="enter birthday"
-                      required
+                      onChange={e => setBirthday(e.target.value)} 
+                      placeholder="enter birthday"
                     />
                   </Form.Group>
 
-                  <Button variant="primary" type="submit"onClick={handleSubmit}>Submit</Button>
+                  <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
                 </Form>
               </Card.Body>
             </Card>
@@ -97,12 +117,11 @@ export function RegistrationView(props) {
   );
 }
 
-RegistrationView.propTypes = {
+RegistrationView.PropTypes = {
   user: PropTypes.shape({
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,
-    Birthday: PropTypes.string.isRequired
-  }).isRequired,
-  onClick: PropTypes.func.isRequired
+    Birthday: PropTypes.instanceOf(Date)
+  }).isRequired
 };
