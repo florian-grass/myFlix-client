@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 // import './movie.view.scss';
 
 
 export class MovieView extends React.Component {
 
-  keypressCallback(event) {
-    console.log(event.key);
-  }
+  // keypressCallback(event) {
+  //   console.log(event.key);
+  // }
 
-  componentDidMount() {
-    document.addEventListener('keypress', this.keypressCallback);
-  }
+  // componentDidMount() {
+  //   document.addEventListener('keypress', this.keypressCallback);
+  // }
 
-  componentWillUnmount() {
-    document.removeEventListener('keypress', this.keypressCallback);
-  }
+  // componentWillUnmount() {
+  //   document.removeEventListener('keypress', this.keypressCallback);
+  // }
 
   render() {
     const { movie, onBackClick } = this.props;
@@ -33,7 +34,7 @@ export class MovieView extends React.Component {
             {movie.Description}
           </Card.Text>
         </Card.Body>
-        <CardFooter>
+        <Card.Footer>
           <Link to={`/directors/${movie.Director.Name}`}>
             <Button variant="link">Director</Button>
           </Link>
@@ -42,7 +43,7 @@ export class MovieView extends React.Component {
             <Button variant="link">Genre</Button>
           </Link>
           <Button onClick={() => { onBackClick() }} variant="link">Back</Button>
-        </CardFooter>
+        </Card.Footer>
       </Card>
     );
   }
