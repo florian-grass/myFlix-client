@@ -67,7 +67,7 @@ export function RegistrationView(props) {
                       type="text"
                       value={username} 
                       onChange={e => setUsername(e.target.value)} 
-                      placeholder="enter eMail" 
+                      placeholder="enter Username" 
                       required
                     />
                   </Form.Group>
